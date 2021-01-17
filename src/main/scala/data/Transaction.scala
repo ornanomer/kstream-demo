@@ -1,4 +1,4 @@
 package data
 
-case class Transaction (accountId : String, withDraw : Int,
-                        deposit : String, balance : String)
+case class Transaction (accountId : String, withDraw : Double,
+                        deposit : Double, balance : Double)

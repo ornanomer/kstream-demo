@@ -11,6 +11,7 @@ import serde.{TransactionSerde, TransactionSerializer}
 import org.apache.poi.ss.usermodel.{DataFormatter, Row, WorkbookFactory}
 import java.io.File
 
+import exercise.KafkaTopics
 import org.apache.poi.xssf.usermodel.XSSFRow
 
 import collection.JavaConversions._
@@ -39,21 +40,22 @@ val producer = new KafkaProducer[String, Transaction](kafkaProducerProps)
     val sheet = workbook.getSheetAt(0) //
     for (row <- sheet) {
       if(row.getRowNum >0 ){
-        print(row)
         createTran(row)
-        produce(createTran(row), "beni")
+        produce(createTran(row), KafkaTopics.TRANSACTION_TOPIC)
 
       }
     }
 
   }
 
+  def getNum(num : Double): Double =  num.toDouble
+
   def createTran(row : Row): Transaction ={
     val accountId = row.getCell(0).toString
-    val withDraw = row.getCell(5).toString
-    val deposit = row.getCell(6).toString
-    val balance = row.getCell(7).toString
-   Transaction(accountId, withDraw, deposit, balance)
+    val withDraw = row.getCell(5).getNumericCellValue
+    val deposit = row.getCell(6).getNumericCellValue
+    val balance = row.getCell(7).getNumericCellValue
+   Transaction(accountId, getNum(withDraw), getNum(deposit), getNum(balance))
 
 
   }
