@@ -62,7 +62,7 @@ val producer = new KafkaProducer[String, Transaction](kafkaProducerProps)
 
 
   def produce(tran: Transaction, topic : String): Unit ={
-      producer.send(new ProducerRecord[String, Transaction](topic, "beni", tran))
+      producer.send(new ProducerRecord[String, Transaction](topic, "fakekey", tran))
     try Thread.sleep(50)
     catch {
       case e: InterruptedException =>
