@@ -31,6 +31,7 @@
   
        transaction
        nis_transaction
+       withdrawal_max_tran
    
  Looks like we're ready to go...
  
@@ -119,7 +120,7 @@
    
    3. **Level: Medium - AggregateDrawPerAccountPer10MIn. Producer - ProducerTransaction.** 
     In this Exercise you will have to Listens to the transaction topic,
-    and aggregate the withdrawal per account in the last 10 minutes. print the result.
+    and aggregate the withdrawal per account in the last 5 minutes. print the result.
    **Hints:** 
    + [KGroupedStream](https://kafka.apache.org/0110/javadoc/org/apache/kafka/streams/kstream/KGroupedStream.html)
    + [KStream](https://kafka.apache.org/10/javadoc/org/apache/kafka/streams/kstream/KStream.html)

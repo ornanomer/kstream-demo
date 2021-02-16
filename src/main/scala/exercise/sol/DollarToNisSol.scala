@@ -38,9 +38,9 @@ object DollarToNisSol {
     val stream: KStream[String, Transaction] = builder.
       stream[String, Transaction](KafkaTopics.TRANSACTION_TOPIC)
 
-
     stream.mapValues(tran => dollarToNis(tran))
       .to(KafkaTopics.NIS_TRANSACTION)
+
     val streams = new KafkaStreams(builder.build, config)
 
     //start the stream
