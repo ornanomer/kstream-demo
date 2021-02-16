@@ -21,13 +21,7 @@ object AggregateDrawPerAccountPer10Min {
 
 
     val stream: KStream[String, Transaction] = builder.stream(KafkaTopics.TRANSACTION_TOPIC, Consumed.`with`(Serdes.String, new TransactionSerde))
-    //your code here....
 
-    //for debugging purpose you can just replace "to" by "print" in order to print into console
-    //rather than sending the data into Kafka topic
-    /**
-     * .to( TwitterTopics.TRUMP_TWEETS, Produced.with( Serdes.String(), new TweetSerde() ) );
-     */
 
     val streams = new KafkaStreams(builder.build, config)
     streams.start()
