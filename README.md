@@ -21,7 +21,7 @@
  
        docker ps
        docker exec -i -t zk-container-id /bin/bash
-       ifconfig  (take ZK IP)
+       hostname -i (take ZK IP)
        docker exec -i -t kafka-container-id /bin/bash
        $KAFKA_HOME/bin/kafka-topics.sh --list --zookeeper zk-IP
        
